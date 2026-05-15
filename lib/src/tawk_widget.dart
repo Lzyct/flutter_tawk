@@ -83,18 +83,6 @@ class _TawkState extends State<Tawk> {
         ..loadRequest(Uri.parse(widget.directChatLink))
         ..setNavigationDelegate(
           NavigationDelegate(
-            onNavigationRequest: (NavigationRequest request) {
-              if (request.url == 'about:blank' ||
-                  request.url.contains('tawk.to')) {
-                return NavigationDecision.navigate;
-              }
-
-              if (widget.onLinkTap != null) {
-                widget.onLinkTap!(request.url);
-              }
-
-              return NavigationDecision.prevent;
-            },
             onPageFinished: (_) {
               if (widget.visitor != null) {
                 _setUser(widget.visitor!);
@@ -127,7 +115,7 @@ class _TawkState extends State<Tawk> {
                 const Center(
                   child: CircularProgressIndicator.adaptive(),
                 )
-            : Container(),
+            : const SizedBox.shrink(),
       ],
     );
   }
